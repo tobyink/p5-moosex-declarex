@@ -1,5 +1,5 @@
 use 5.010;
-use MooseX::DeclareX::More
+use MooseX::DeclareX
 	plugins => [qw(preprocess postprocess)],
 	;
 

@@ -1,8 +1,8 @@
-package MooseX::DeclareX::Syntax::Plugin::preprocess;
+package MooseX::DeclareX::Plugin::preprocess;
 
 BEGIN {
-	$MooseX::DeclareX::Syntax::Plugin::preprocess::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Syntax::Plugin::preprocess::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::preprocess::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::preprocess::VERSION   = '0.001';
 }
 
 use Moose;
@@ -27,7 +27,7 @@ sub _default_inner
 	my $return = $self->$orig(@_);
 	
 	push @$return,
-		'MooseX::DeclareX::Feature::Plugin::preprocess'->new(
+		'MooseX::DeclareX::Plugin::preprocess::MethodModifier'->new(
 			identifier    => 'preprocess',
 			modifier_type => 'around',
 		);
@@ -35,7 +35,7 @@ sub _default_inner
 	return $return;
 }
 
-package MooseX::DeclareX::Feature::Plugin::preprocess;
+package MooseX::DeclareX::Plugin::preprocess::MethodModifier;
 
 use Moose;
 extends 'MooseX::Declare::Syntax::Keyword::MethodModifier';
@@ -48,7 +48,7 @@ override register_method_declaration => sub
 		my $orig = shift;
 		my $self = shift;
 		my @args = $method->body->($self, @_);
-		@_ = ($self, $args);
+		@_ = ($self, @args);
 		goto $orig;
 	};
 	

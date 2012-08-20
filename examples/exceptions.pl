@@ -1,4 +1,4 @@
-use MooseX::DeclareX::More
+use MooseX::DeclareX
 	keywords => [qw(class role exception)],
 	;
 

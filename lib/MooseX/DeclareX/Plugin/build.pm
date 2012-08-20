@@ -1,8 +1,8 @@
-package MooseX::DeclareX::Syntax::Plugin::build;
+package MooseX::DeclareX::Plugin::build;
 
 BEGIN {
-	$MooseX::DeclareX::Syntax::Plugin::build::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Syntax::Plugin::build::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::build::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::build::VERSION   = '0.001';
 }
 
 use Moose;
@@ -27,14 +27,14 @@ sub _default_inner
 	my $return = $self->$orig(@_);
 	
 	push @$return,
-		'MooseX::DeclareX::Feature::Plugin::build'->new(
+		'MooseX::DeclareX::Plugin::build::MethodModifier'->new(
 			identifier    => 'build',
 		);
 	
 	return $return;
 }
 
-package MooseX::DeclareX::Feature::Plugin::build;
+package MooseX::DeclareX::Plugin::build::MethodModifier;
 
 use Moose;
 extends 'MooseX::Declare::Syntax::Keyword::Method';

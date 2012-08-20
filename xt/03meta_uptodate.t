@@ -1,4 +1,4 @@
 use Test::More tests => 1;
 use Test::RDF::DOAP::Version;
-doap_version_ok('MooseX-DeclareX-More', 'MooseX::DeclareX::More');
+doap_version_ok('MooseX-DeclareX', 'MooseX::DeclareX');
 

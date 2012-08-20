@@ -1,8 +1,8 @@
-package MooseX::DeclareX::Syntax::Plugin::abstract;
+package MooseX::DeclareX::Plugin::abstract;
 
 BEGIN {
-	$MooseX::DeclareX::Syntax::Plugin::abstract::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Syntax::Plugin::abstract::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::abstract::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::abstract::VERSION   = '0.001';
 }
 
 use Moose;
@@ -15,7 +15,7 @@ sub plugin_setup
 {
 	my ($class, $kw) = @_;
 
-	if ($kw->isa('MooseX::DeclareX::Syntax::Keyword::class'))
+	if ($kw->isa('MooseX::DeclareX::Keyword::class'))
 	{
 		$kw->register_feature(abstract => \&_abstract);
 		$kw->register_feature(concrete => sub { (1) });

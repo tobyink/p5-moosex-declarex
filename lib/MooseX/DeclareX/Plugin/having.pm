@@ -1,8 +1,8 @@
-package MooseX::DeclareX::Syntax::Plugin::having;
+package MooseX::DeclareX::Plugin::having;
 
 BEGIN {
-	$MooseX::DeclareX::Syntax::Plugin::having::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Syntax::Plugin::having::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::having::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::having::VERSION   = '0.001';
 }
 
 use Moose;
@@ -17,7 +17,7 @@ sub plugin_setup
 	
 	Moose::Util::apply_all_roles(
 		$kw,
-		'MooseX::DeclareX::Feature::Plugin::having',
+		'MooseX::DeclareX::Plugin::having::Role',
 	);
 	
 	MooseX::Declare::Context::WithOptions->meta->add_around_method_modifier(
@@ -38,7 +38,7 @@ sub plugin_setup
 	);
 }
 
-package MooseX::DeclareX::Feature::Plugin::having;
+package MooseX::DeclareX::Plugin::having::Role;
 
 use Moose::Role;
 	

@@ -1,13 +1,13 @@
-package MooseX::DeclareX::Syntax::Keyword::role;
+package MooseX::DeclareX::Keyword::class;
 
 require MooseX::Declare;
 
 use Moose;
-extends 'MooseX::Declare::Syntax::Keyword::Role';
+extends 'MooseX::Declare::Syntax::Keyword::Class';
 with 'MooseX::DeclareX::Plugin';
 with 'MooseX::DeclareX::Registry';
 
-sub preferred_identifier { 'role' }
+sub preferred_identifier { 'class' }
 
 before add_namespace_customizations => sub {
 	my ($self, $ctx) = @_;

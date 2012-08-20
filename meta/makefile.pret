@@ -1,8 +1,8 @@
 # This file provides instructions for packaging.
 
-`MooseX-DeclareX-More`
-	perl_version_from m`MooseX::DeclareX::More`;
-	version_from      m`MooseX::DeclareX::More`;
-	readme_from       m`MooseX::DeclareX::More`;
+`MooseX-DeclareX`
+	perl_version_from m`MooseX::DeclareX`;
+	version_from      m`MooseX::DeclareX`;
+	readme_from       m`MooseX::DeclareX`;
 	test_requires     p`Test::More 0.61`  .
 

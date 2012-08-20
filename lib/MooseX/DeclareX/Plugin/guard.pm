@@ -1,8 +1,8 @@
-package MooseX::DeclareX::Syntax::Plugin::postprocess;
+package MooseX::DeclareX::Plugin::guard;
 
 BEGIN {
-	$MooseX::DeclareX::Syntax::Plugin::postprocess::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Syntax::Plugin::postprocess::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::guard::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::guard::VERSION   = '0.001';
 }
 
 use Moose;
@@ -27,15 +27,15 @@ sub _default_inner
 	my $return = $self->$orig(@_);
 	
 	push @$return,
-		'MooseX::DeclareX::Feature::Plugin::postprocess'->new(
-			identifier    => 'postprocess',
+		'MooseX::DeclareX::Plugin::guard::MethodModifier'->new(
+			identifier    => 'guard',
 			modifier_type => 'around',
 		);
 	
 	return $return;
 }
 
-package MooseX::DeclareX::Feature::Plugin::postprocess;
+package MooseX::DeclareX::Plugin::guard::MethodModifier;
 
 use Moose;
 extends 'MooseX::Declare::Syntax::Keyword::MethodModifier';
@@ -48,22 +48,11 @@ override register_method_declaration => sub
 	{
 		my $orig = shift;
 		my $self = shift;
-		
-		if (wantarray)
+		if ($method->body->($self, @_))
 		{
-			my @rv = $self->$orig(@_);
-			return $method->body->($self, @rv);
+			return $self->$orig(@_);
 		}
-		elsif (defined wantarray)
-		{
-			my $rv = $self->$orig(@_);
-			return $method->body->($self, $rv);
-		}
-		else
-		{
-			unshift @_, $self;
-			goto $orig;
-		}
+		return;
 	};
 	
 	return Moose::Util::add_method_modifier(

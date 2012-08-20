@@ -1,15 +1,15 @@
-package MooseX::DeclareX::Syntax::Keyword::exception;
+package MooseX::DeclareX::Keyword::exception;
 
 BEGIN {
-	$MooseX::DeclareX::Syntax::Keyword::exception::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Syntax::Keyword::exception::VERSION   = '0.001';
+	$MooseX::DeclareX::Keyword::exception::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Keyword::exception::VERSION   = '0.001';
 }
 
 require MooseX::Declare;
 require Throwable::Error;
 
 use Moose;
-extends 'MooseX::DeclareX::Syntax::Keyword::class';
+extends 'MooseX::DeclareX::Keyword::class';
 
 use constant preferred_identifier => 'exception';
 

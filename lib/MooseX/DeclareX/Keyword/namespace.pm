@@ -1,4 +1,4 @@
-package MooseX::DeclareX::Syntax::Keyword::namespace;
+package MooseX::DeclareX::Keyword::namespace;
 
 require MooseX::Declare;
 
