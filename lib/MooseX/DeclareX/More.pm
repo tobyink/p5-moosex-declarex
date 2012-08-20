@@ -16,7 +16,6 @@ use constant DEFAULT_PLUGINS  => [qw()];
 use Class::Load 0 qw(load_class);
 use Data::OptList 0;
 use MooseX::Declare 0;
-use MooseX::Declare::Context::WithOptions::Patch::Extensible 0.001;
 use TryCatch 0;
 
 sub import

@@ -5,6 +5,7 @@ require MooseX::Declare;
 use Moose;
 extends 'MooseX::Declare::Syntax::Keyword::Class';
 with 'MooseX::DeclareX::Plugin';
+with 'MooseX::DeclareX::Registry';
 
 sub preferred_identifier { 'class' }
 

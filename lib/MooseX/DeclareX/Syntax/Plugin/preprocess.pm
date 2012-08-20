@@ -48,7 +48,8 @@ override register_method_declaration => sub
 		my $orig = shift;
 		my $self = shift;
 		my @args = $method->body->($self, @_);
-		return $self->$orig(@args);
+		@_ = ($self, $args);
+		goto $orig;
 	};
 	
 	return Moose::Util::add_method_modifier(
