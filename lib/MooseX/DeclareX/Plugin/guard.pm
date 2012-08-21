@@ -47,11 +47,7 @@ override register_method_declaration => sub
 	my $subroutine = sub
 	{
 		my $orig = shift;
-		my $self = shift;
-		if ($method->body->($self, @_))
-		{
-			return $self->$orig(@_);
-		}
+		goto $orig if $method->body->(@_);
 		return;
 	};
 	
