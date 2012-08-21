@@ -10,6 +10,7 @@ with 'MooseX::DeclareX::Plugin';
 
 use MooseX::Declare ();
 use Moose::Util ();
+use MooseX::ABCD ();
 
 sub plugin_setup
 {
@@ -25,7 +26,7 @@ sub plugin_setup
 sub _abstract
 {
 	my ($self, $ctx, $package) = @_;
-	$ctx->add_scope_code_parts('use MooseX::ABC');
+	$ctx->add_scope_code_parts('use MooseX::ABCD');
 }
 
 1;

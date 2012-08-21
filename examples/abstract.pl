@@ -6,7 +6,7 @@ use MooseX::DeclareX
 class Primate
 	is abstract
 {
-	#requires 'classification';  ### XXX - no worky!!!
+	requires 'classification';
 	has 'name' => (is => 'ro', isa => 'Str');
 }
 
@@ -16,5 +16,9 @@ class Monkey
 	has 'classification' => (is => 'ro', isa => 'Str');
 }
 
+class Human extends Primate is mutable;
+
 my $bobo = Monkey::->new(name => 'Bobo');
 say $bobo->name;
+
+my $popo = Primate::->new;
