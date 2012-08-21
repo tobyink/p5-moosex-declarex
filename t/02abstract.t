@@ -7,7 +7,7 @@ class Primate is abstract
 	has 'name' => (is => 'ro', isa => 'Str');
 }
 
-class Monkey extends Primate
+class Monkey is concrete extends Primate
 {
 	has 'classification' => (is => 'ro', isa => 'Str');
 }
