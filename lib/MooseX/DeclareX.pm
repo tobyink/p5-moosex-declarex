@@ -58,6 +58,7 @@ sub _keywords
 			next if $class2 ~~ [qw(
 				method before after around override augment
 				with is clean dirty mutable try catch
+				concrete
 			)];
 			
 			my $module2 = join '::' => (qw[MooseX DeclareX Plugin], $class2);
@@ -286,6 +287,11 @@ method. If the subclass itself is also abstract, then it doesn't need to
 provide the required methods. (There's also a little cheat: classes which
 are mutable may extend abstract classes without implementing required methods.
 You should not do this though.)
+
+=item C<< is concrete >>
+
+A counterpart to C<< is abstract >>. Currently, this is a no-op, but in
+future it might enable some checks related to abstract classes.
 
 =back
 
