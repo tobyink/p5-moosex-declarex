@@ -1,5 +1,10 @@
 package MooseX::DeclareX::Plugin::protected;
 
+BEGIN {
+	$MooseX::DeclareX::Plugin::protected::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::protected::VERSION   = '0.001';
+}
+
 use Moose;
 with 'MooseX::DeclareX::Plugin';
 
@@ -21,6 +26,11 @@ sub plugin_setup
 
 package MooseX::DeclareX::Plugin::protected::Role;
 
+BEGIN {
+	$MooseX::DeclareX::Plugin::protected::Role::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::protected::Role::VERSION   = '0.001';
+}
+
 use Moose::Role;
 
 after add_namespace_customizations => sub 
@@ -34,6 +44,11 @@ after add_namespace_customizations => sub
 };
 
 package MooseX::DeclareX::Plugin::protected::Parser;
+
+BEGIN {
+	$MooseX::DeclareX::Plugin::protected::Parser::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::protected::Parser::VERSION   = '0.001';
+}
 
 use Moose;
 extends 'MooseX::DeclareX::MethodPrefix';

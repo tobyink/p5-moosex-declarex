@@ -1,5 +1,10 @@
 package MooseX::DeclareX::MethodPrefix;
 
+BEGIN {
+	$MooseX::DeclareX::MethodPrefix::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::MethodPrefix::VERSION   = '0.001';
+}
+
 use Moose;
 
 sub prefix_keyword {

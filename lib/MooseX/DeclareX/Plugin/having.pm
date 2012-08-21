@@ -40,6 +40,11 @@ sub plugin_setup
 
 package MooseX::DeclareX::Plugin::having::Role;
 
+BEGIN {
+	$MooseX::DeclareX::Plugin::having::Role::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::having::Role::VERSION   = '0.001';
+}
+
 use Moose::Role;
 	
 sub add_having_option_customizations

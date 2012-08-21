@@ -1,5 +1,10 @@
 package MooseX::DeclareX::RegistryUsing;
 
+BEGIN {
+	$MooseX::DeclareX::RegistryUsing::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::RegistryUsing::VERSION   = '0.001';
+}
+
 use Moose::Role;
 use MooseX::Declare::Context::WithOptions::Patch::Extensible 0.001;
 

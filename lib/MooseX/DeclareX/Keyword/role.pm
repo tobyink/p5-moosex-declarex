@@ -1,5 +1,10 @@
 package MooseX::DeclareX::Keyword::role;
 
+BEGIN {
+	$MooseX::DeclareX::Keyword::role::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Keyword::role::VERSION   = '0.001';
+}
+
 require MooseX::Declare;
 
 use Moose;

@@ -1,5 +1,10 @@
 package MooseX::DeclareX::Registry;
 
+BEGIN {
+	$MooseX::DeclareX::Registry::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Registry::VERSION   = '0.001';
+}
+
 our %context_allow_options;
 
 BEGIN

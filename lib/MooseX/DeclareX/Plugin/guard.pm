@@ -37,6 +37,11 @@ sub _default_inner
 
 package MooseX::DeclareX::Plugin::guard::MethodModifier;
 
+BEGIN {
+	$MooseX::DeclareX::Plugin::guard::MethodModifier::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::guard::MethodModifier::VERSION   = '0.001';
+}
+
 use Moose;
 extends 'MooseX::Declare::Syntax::Keyword::MethodModifier';
 

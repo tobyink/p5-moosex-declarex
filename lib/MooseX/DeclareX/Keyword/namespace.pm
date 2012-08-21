@@ -1,5 +1,10 @@
 package MooseX::DeclareX::Keyword::namespace;
 
+BEGIN {
+	$MooseX::DeclareX::Keyword::namespace::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Keyword::namespace::VERSION   = '0.001';
+}
+
 require MooseX::Declare;
 
 use Moose;
