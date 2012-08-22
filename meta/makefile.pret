@@ -15,7 +15,6 @@
 	requires          p`MooseX::Declare`;
 	requires          p`MooseX::Declare::Context::WithOptions::Patch::Extensible`;
 	requires          p`MooseX::Method::Signatures`;
-	requires          p`MooseX::Privacy`;
 	requires          p`Sub::Install`;
 	requires          p`Throwable::Error`;
 	requires          p`TryCatch`;
