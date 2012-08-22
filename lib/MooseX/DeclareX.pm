@@ -21,8 +21,8 @@ use TryCatch 0;
 sub import
 {
 	my ($class, %args) = @_;
-   my $caller = ($args{into} ||= caller(0));
-
+	my $caller = ($args{into} ||= caller(0));
+	
 	$_->setup_for($caller, provided_by => $class) for __PACKAGE__->_keywords(\%args);
 	
 	strict->import;
@@ -58,10 +58,10 @@ sub _keywords
 			next if $class2 ~~ [qw(
 				method before after around override augment
 				with is clean dirty mutable try catch
-				concrete
 			)];
 			
 			my $module2 = join '::' => (qw[MooseX DeclareX Plugin], $class2);
+			$module2 =~ s/Plugin::concrete$/Plugin::abstract/;
 			load_class $module2;
 			
 			$module2->plugin_setup($kw);
@@ -86,9 +86,9 @@ MooseX::DeclareX - more sugar for MooseX::Declare
     keywords => [qw(class exception)],
     plugins  => [qw(guard build preprocess)],
     ;
-
+  
   class Banana;
-
+  
   exception BananaError
   {
     has origin => (
@@ -97,14 +97,14 @@ MooseX::DeclareX - more sugar for MooseX::Declare
       required => 1,
     );
   }
-
+  
   class Monkey
   {
     has name => (
       is       => 'rw',
       isa      => 'Str',
     );
-
+    
     build name {
       state $i = 1;
       return "Anonymous $i";
@@ -121,7 +121,7 @@ MooseX::DeclareX - more sugar for MooseX::Declare
         got_bananas  => 'count',
       },
     );
-      
+    
     build bananas {
       return [];
     }
@@ -142,14 +142,14 @@ MooseX::DeclareX - more sugar for MooseX::Declare
       say "$name: $_" for @strings;
     }  
   }
-
+  
   class Monkey::Loud extends Monkey
   {
     preprocess screech (@strings) {
       return map { uc($_) } @strings;
     }
   }
-
+  
   try {
     my $bobo = Monkey::Loud->new;
     $bobo->give_banana( Banana->new );
@@ -256,43 +256,6 @@ In fact, it must return the processed parameters as a list.
 
 Like C<preprocess> but instead acts on the method's return value.
 
-=item C<< public method >>, C<< protected method >>, C<< private method >>
-
-Provides method-level privacy. Sugar for L<MooseX::Privacy>.
-
-=item C<< is abstract >>
-
-Declares that a class cannot be instantiated.
-
-Also allows the standard Moose C<requires> function to work within
-classes (it normally only works within roles).
-
-	class Shape is abstract {
-		requires 'draw';
-	}
-	
-	class Circle extends Shape {
-		method draw { ... }
-	}
-	
-	class Square extends Shape {
-		# does not implement 'draw'
-	} # dies
-	
-	my $shape  = Shape->new;  # dies
-	my $circle = Circle->new; # succeeds
-
-When a class requires a method, then subclasses are supposed to provide that
-method. If the subclass itself is also abstract, then it doesn't need to
-provide the required methods. (There's also a little cheat: classes which
-are mutable may extend abstract classes without implementing required methods.
-You should not do this though.)
-
-=item C<< is concrete >>
-
-A counterpart to C<< is abstract >>. Currently, this is a no-op, but in
-future it might enable some checks related to abstract classes.
-
 =back
 
 =head2 Export
@@ -320,9 +283,8 @@ If you don't specify a list of plugins, then the default list is:
 
 	[qw(build guard)]
 
-That is, there are certain pieces of functionality (method privacy,
-abstract classes, etc) which are not available by default - they need to
-be loaded explicitly! 
+That is, there are certain pieces of functionality which are not available
+by default - they need to be loaded explicitly! 
 
 =head1 BUGS
 
@@ -332,7 +294,13 @@ L<http://rt.cpan.org/Dist/Display.html?Queue=MooseX-DeclareX>.
 =head1 SEE ALSO
 
 L<MooseX::Declare>, L<MooseX::Method::Signatures>, L<TryCatch>,
-L<Throwable::Error>, L<MooseX::Privacy>, L<MooseX::ABCD>.
+L<Throwable::Error>.
+
+Additional keywords and plugins are available on CPAN:
+L<MooseX::DeclareX::Plugin::abstract>,
+L<MooseX::DeclareX::Privacy>,
+L<MooseX::DeclareX::Keyword::interface>,
+L<MooseX::DeclareX::Plugin::singleton>.
 
 =head1 AUTHOR
 
