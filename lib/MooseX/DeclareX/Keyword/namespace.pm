@@ -12,6 +12,12 @@ extends 'MooseX::Declare::Syntax::Keyword::Namespace';
 with 'MooseX::DeclareX::Plugin';
 with 'MooseX::DeclareX::Registry';
 
+has allowed_option_names => (
+	is        => 'ro',
+	isa       => 'ArrayRef',
+	default   => sub { [] },
+);
+
 sub preferred_identifier { 'namespace' }
 
 sub add_optional_customizations {}

@@ -15,8 +15,8 @@ with 'MooseX::DeclareX::Registry';
 sub preferred_identifier { 'class' }
 
 before add_namespace_customizations => sub {
-	my ($self, $ctx) = @_;
-	$_->setup_for($ctx->namespace, provided_by => ref $self)
+	my ($self, $ctx, $pkg, $o) = @_;
+	$_->setup_for($pkg, provided_by => ref $self)
 		foreach @{ $self->default_inner };
 };
 
