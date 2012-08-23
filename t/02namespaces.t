@@ -1,5 +1,5 @@
-use MooseX::DeclareX keywords => [qw(class role exception)];
-use Test::More tests => 2;
+use MooseX::DeclareX keywords => [qw(class role exception)], plugins => [qw(build)];
+use Test::More tests => 3;
 
 class Foo {
 	class ::Bar {
@@ -12,7 +12,10 @@ class Foo {
 		role ::Baz {
 			exception ::Quux {
 				::is(__PACKAGE__, 'Foo::Bar::Baz::Quux');
+				build monkey { 1 }
 			}
 		}
 	}
 }
+
+can_ok('Foo::Bar::Baz::Quux', 'monkey');
