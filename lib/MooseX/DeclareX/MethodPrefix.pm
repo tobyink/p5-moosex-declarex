@@ -40,7 +40,7 @@ has class => (
 	required => 1,
 );
 
-has handle_has (
+has handle_has => (
 	is       => 'ro',
 	isa      => 'Bool',
 	default  => 0,
@@ -107,9 +107,9 @@ sub parse
 	
 	if ($thing eq 'has' and $self->handle_has)
 	{
-		# this can probably be improved
+		# THIS DOES NOT WORK!
 		my $line = $self->get_linestr;
-		$line =~ s/${kw}\s+has/MooseX::DeclareX::Plugin::${kw}\::HAS/;
+		$line =~ s/$kw/$kw\_has/;
 		$self->set_linestr($line);
 		return;
 	}
