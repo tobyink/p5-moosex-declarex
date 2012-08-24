@@ -39,6 +39,12 @@ has class => (
 	isa      => 'ClassName',
 	required => 1,
 );
+
+has handle_has (
+	is       => 'ro',
+	isa      => 'Bool',
+	default  => 0,
+);
  
 sub BUILD
 {
@@ -98,6 +104,16 @@ sub parse
 	$self->skipspace;
 
 	my $thing = $self->strip_name;
+	
+	if ($thing eq 'has' and $self->handle_has)
+	{
+		# this can probably be improved
+		my $line = $self->get_linestr;
+		$line =~ s/${kw}\s+has/MooseX::DeclareX::Plugin::${kw}\::HAS/;
+		$self->set_linestr($line);
+		return;
+	}
+	
 	confess "expected 'method', got '${thing}'"
 		unless $thing eq 'method';
 
