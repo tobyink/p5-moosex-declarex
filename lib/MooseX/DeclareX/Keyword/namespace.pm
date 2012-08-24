@@ -9,8 +9,10 @@ require MooseX::Declare;
 
 use Moose;
 extends 'MooseX::Declare::Syntax::Keyword::Namespace';
-with 'MooseX::DeclareX::Plugin';
-with 'MooseX::DeclareX::Registry';
+with qw(
+	MooseX::DeclareX::Plugin
+	MooseX::DeclareX::Registry
+);
 
 has allowed_option_names => (
 	is        => 'ro',
