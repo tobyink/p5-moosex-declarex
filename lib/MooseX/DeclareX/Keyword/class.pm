@@ -2,7 +2,7 @@ package MooseX::DeclareX::Keyword::class;
 
 BEGIN {
 	$MooseX::DeclareX::Keyword::class::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Keyword::class::VERSION   = '0.003';
+	$MooseX::DeclareX::Keyword::class::VERSION   = '0.004';
 }
 
 require MooseX::Declare;
