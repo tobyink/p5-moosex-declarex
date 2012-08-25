@@ -11,7 +11,7 @@ BEGIN {
 }
 
 use constant DEFAULT_KEYWORDS => [qw(class role exception)];
-use constant DEFAULT_PLUGINS  => [qw(build guard)];
+use constant DEFAULT_PLUGINS  => [qw(build guard std_constants)];
 
 use Class::Load 0 qw(load_class);
 use Data::OptList 0;
@@ -25,6 +25,7 @@ sub import
 
 	if (my $types = delete $args{types})
 	{
+		$args{plugins} ||= DEFAULT_PLUGINS;
 		push @{ $args{plugins} }, types => $types;
 	}
 
@@ -261,6 +262,11 @@ In fact, it must return the processed parameters as a list.
 
 Like C<preprocess> but instead acts on the method's return value.
 
+=item C<read_only>, C<read_write>, C<true>, C<false>
+
+Useful constants when defining Moose attributes. These are enabled by the
+std_constants plugin.
+
 =back
 
 =head2 Export
@@ -286,7 +292,7 @@ If you don't specify a list of keywords, then the default list is:
 
 If you don't specify a list of plugins, then the default list is:
 
-	[qw(build guard)]
+	[qw(build guard std_constants)]
 
 That is, there are certain pieces of functionality which are not available
 by default - they need to be loaded explicitly! 
@@ -298,7 +304,7 @@ easily:
 
   use MooseX::DeclareX
     keywords => [qw(class role exception)],
-    plugins  => [qw(guard build)],
+    plugins  => [qw(build std_constants)],
     types    => [
       -Moose,                 # use MooseX::Types::Moose -all
       -URI => [qw(FileUri)],  # use MooseX::Types::URI qw(FileUri)

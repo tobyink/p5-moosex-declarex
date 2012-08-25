@@ -13,7 +13,7 @@ use MooseX::DeclareX
 
 try {
 	class X {
-		has n => (is => 'ro', isa => Num);
+		has n => (is => read_only, isa => Num);
 	}
 	X->new(n => "Hello");
 }
