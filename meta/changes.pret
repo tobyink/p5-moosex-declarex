@@ -28,4 +28,5 @@
 	label   "Preikestolen I";
 	changeset [
 		item "MooseX::Types injection into classes."^^Addition;
+		item "Some handy constants for attribute definition."^^Addition;
 	].
