@@ -23,10 +23,14 @@ sub import
 	my ($class, %args) = @_;
 	my $caller = caller(0);
 
-	if (my $types = delete $args{types})
+	# Simplified interface for a couple of standard plugins
+	foreach my $awesome (qw/ types imports /)
 	{
-		$args{plugins} ||= DEFAULT_PLUGINS;
-		push @{ $args{plugins} }, types => $types;
+		if (my $ness = delete $args{$awesome})
+		{
+			$args{plugins} ||= DEFAULT_PLUGINS;
+			push @{ $args{plugins} }, $awesome, $ness;
+		}
 	}
 
 	$_->setup_for($caller, %args, provided_by => $class) for __PACKAGE__->_keywords(\%args);
@@ -314,6 +318,23 @@ easily:
 As per the example, any module which does not include an arrayref of import
 parameters, gets "-all". A leading hyphen is interpreted as an abbreviation
 for "MooseX::Types::".
+
+=head2 Additional Import Syntactic Sugar
+
+You can specify a list of additional modules that will always be imported
+"inside" your class/role definitions.
+
+  use MooseX::DeclareX
+    keywords => [qw(class role exception)],
+    plugins  => [qw(build guard std_constants)],
+    imports  => [
+      'MooseX::ClassAttribute',
+      'Path::Class'      => [qw( file dir )],
+      'Perl6::Junction'  => [qw( any all none )],
+      'List::Util'       => [qw( first reduce )],
+    ];
+
+In fact, this is just a minor generalisation of the MooseX::Types feature.
 
 =head1 BUGS
 
