@@ -13,7 +13,7 @@ class Local::System
 		isa => 'Path::Class::Entity',
 	);
 	
-	CLASS->temp_dir(dir "/tmp");
+	CLASS->temp_dir( dir "/tmp" );
 }
 
 say for sort Local::System->temp_dir->children;
