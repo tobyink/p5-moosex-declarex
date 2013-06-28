@@ -174,6 +174,10 @@ MooseX::DeclareX - more sugar for MooseX::Declare
     warn sprintf("%s: %s\n", ref $e, $e->message);
   }
 
+=head1 STATUS
+
+This is very experimental stuff. B<< YOU HAVE BEEN WARNED! >>
+
 =head1 DESCRIPTION
 
 MooseX::DeclareX takes the declarative sugar of L<MooseX::Declare> to the
