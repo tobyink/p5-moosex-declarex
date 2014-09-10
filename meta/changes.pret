@@ -49,3 +49,10 @@
 	changeset [
 		item "Get `has` handling to work properly for MooseX::DeclareX::MethodPrefix."^^Bugfix;
 	].
+
+`MooseX-DeclareX 0.009 cpan:TOBYINK`
+	issued    2014-09-10;
+	changeset [
+		item "Switch to Dist::Inkt."^^Packaging;
+	].
+
